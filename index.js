@@ -55,13 +55,13 @@ function Signo(mes, dia) {
 
 app.post('/usuarios', async (req, res) => {
     try {
-        const { nome, email, datanascimento, sexo } = req.body;
+        const { nome, sobrenome, email, datanascimento, sexo } = req.body;
 
         const dataNascimento = new Date(datanascimento);
         const idade = Idade(dataNascimento);
         const signo = Signo(dataNascimento.getMonth() + 1, dataNascimento.getDate());
 
-        await pool.query('INSERT INTO usuarios (nome, email, idade, signo, datanascimento, sexo) VALUES ($1, $2, $3, $4, $5, $6)', [nome, email, idade, signo, datanascimento, sexo]);
+        await pool.query('INSERT INTO usuarios (nome, sobrenome, email, idade, signo, datanascimento, sexo) VALUES ($1, $2, $3, $4, $5, $6, $7)', [nome, sobrenome, email, idade, signo, datanascimento, sexo]);
         res.status(201).send({ mensagem: 'O usuário foi adicionado com sucesso' });
     } catch (error) {
         console.error('Erro ao adicionar usuário:', error);
@@ -85,11 +85,11 @@ app.get('/usuarios', async (req, res) => {
 app.put('/usuarios/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { nome, email, datanascimento, sexo } = req.body;
+        const { nome, sobrenome, email, datanascimento, sexo } = req.body;
         const dataNascimento = new Date(datanascimento);
         const idade = Idade(dataNascimento);
         const signo = Signo(dataNascimento.getMonth() + 1, dataNascimento.getDate());
-        await pool.query('UPDATE usuarios SET nome = $1, email = $2, idade = $3, signo = $4, datanascimento = $5, sexo = $6 WHERE id = $7', [nome, email, idade, signo, datanascimento, sexo, id]);
+        await pool.query('UPDATE usuarios SET nome = $1, sobrenome = $2, email = $3, idade = $4, signo = $5, datanascimento = $6, sexo = $7 WHERE id = $8', [nome, sobrenome, email, idade, signo, datanascimento, sexo, id]);
         res.status(200).send({ mensagem: 'O usuário foi atualizado com sucesso' });
     } catch (error) {
         console.error('Erro ao atualizar usuário:', error);

@@ -5,6 +5,7 @@ CREATE DATABASE atividade_bancoback;
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     idade INTEGER NOT NULL,
     signo VARCHAR(20) NOT NULL,
@@ -12,4 +13,4 @@ CREATE TABLE usuarios (
     sexo VARCHAR(10) NOT NULL
 );
 
-INSERT INTO (nome, email, idade, signo, datanascimento, sexo) VALUES ('Ana', 'ana@gmail.com', 17, 'câncer', '30/06/2006', 'feminino');
+INSERT INTO (nome, sobrenome, email, idade, signo, datanascimento, sexo) VALUES ('Ana', 'Pontes','ana@gmail.com', 17, 'câncer', '30/06/2006', 'feminino');
